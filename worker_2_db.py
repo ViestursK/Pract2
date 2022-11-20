@@ -239,12 +239,16 @@ if __name__ == "__main__":
 			# Sorting array by passing distance
 			tmp_ast_arr = sort_ast_by_pass_dist(ast_hazardous)
 			logger.info("Closest passing distance is for: " + str(tmp_ast_arr[0][0]) + " at: " + str(int(tmp_ast_arr[0][8])) + " km | more info: " + str(tmp_ast_arr[0][1]))
+			push_asteroids_arrays_to_db(request_date, ast_hazardous, 1)
+
 		else:
 			logger.info("No hazardous asteroids close passing today")
+			
 		# Looping through both asteroids arrays and saves the data to db. Beofre saving, checks if info about the asteroid allready exists. As we want to be able
 		# to run the code multiple days per day and not fill up the db with identical values.
-		print(ast_safe)
-		push_asteroids_arrays_to_db(request_date, ast_hazardous, 1)
-		push_asteroids_arrays_to_db(request_date, ast_safe, 0)
+		logger.info(ast_safe)
+		
+		if len(ast_safe) > 0:
+			push_asteroids_arrays_to_db(request_date, ast_safe, 0)
 	else:
 		logger.error("Unable to get response from API. Response code: " + str(r.status_code) + " | content: " + str(r.text))

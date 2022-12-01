@@ -4,6 +4,8 @@ import datetime
 from datetime import timezone
 from datetime import datetime
 
+# This test checks if method mysql_check_if_ast_exists_in_db works correctly.
+
 print("Asteroid in DB test")
 print("----------")
 print("Testing function \"mysql_check_if_ast_exists_in_db\"")
